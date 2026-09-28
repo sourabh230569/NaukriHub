@@ -10,7 +10,9 @@ services:
     plan: free
     rootDir: backend
     buildCommand: npm install
-    startCommand: node server.js
+    # Free plan has no persistent disk, so we re-seed on every start.
+    # seed.js uses INSERT OR IGNORE, so this is safe and idempotent.
+    startCommand: npm run start:seeded
     healthCheckPath: /api/health
     envVars:
       - key: NODE_ENV
@@ -21,14 +23,11 @@ services:
         value: 7d
       - key: COOKIE_SECRET
         generateValue: true
+      # No persistent disk on free plan; DB lives in the app folder and is
+      # re-seeded on each start. Upgrade + add a disk for real persistence.
       - key: DATABASE_PATH
-        value: /var/data/jobportal.db
+        value: ./database/jobportal.db
       # Set this to your Vercel frontend URL after deploying the frontend,
       # e.g. https://naukrihub.vercel.app  (comma-separated for multiple)
       - key: CORS_ORIGIN
         sync: false
-    # Persistent disk so the SQLite database survives restarts/redeploys.
-    disk:
-      name: naukrihub-data
-      mountPath: /var/data
-      sizeGB: 1
