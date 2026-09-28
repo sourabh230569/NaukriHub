@@ -3,7 +3,11 @@
  * All fetch calls go through here. No other module should call fetch() directly.
  */
 
-const API_BASE = '/api';
+// API base URL.
+// - Local dev / single-server: leave window.API_URL unset → uses same-origin '/api'.
+// - Split deploy (frontend on Vercel, backend on Render): set window.API_URL
+//   in config.js to your Render URL, e.g. 'https://naukrihub-api.onrender.com'.
+const API_BASE = (window.API_URL ? window.API_URL.replace(/\/$/, '') : '') + '/api';
 
 // ─── Token storage ─────────────────────────────────────────────────────────
 

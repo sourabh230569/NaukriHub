@@ -1,0 +1,34 @@
+# Render deployment config for the NaukriHub backend (Express + SQLite).
+# This deploys ONLY the backend as a Web Service. The frontend is deployed
+# separately on Vercel.
+#
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: naukrihub-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: COOKIE_SECRET
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /var/data/jobportal.db
+      # Set this to your Vercel frontend URL after deploying the frontend,
+      # e.g. https://naukrihub.vercel.app  (comma-separated for multiple)
+      - key: CORS_ORIGIN
+        sync: false
+    # Persistent disk so the SQLite database survives restarts/redeploys.
+    disk:
+      name: naukrihub-data
+      mountPath: /var/data
+      sizeGB: 1
