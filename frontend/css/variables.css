@@ -1,0 +1,90 @@
+/* variables.css — design tokens */
+
+:root {
+  /* ── Typography ─────────────────────────────────────── */
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* ── Colour palette ─────────────────────────────────── */
+  /* Backgrounds */
+  --color-bg:          #f4f2ef;   /* warm off-white */
+  --color-bg-surface:  #ffffff;
+  --color-bg-subtle:   #eeecea;
+  --color-bg-muted:    #e5e2de;
+
+  /* Text */
+  --color-text:        #1c1a18;   /* near-black charcoal */
+  --color-text-muted:  #6b6460;
+  --color-text-light:  #9b9390;
+  --color-text-inverse:#ffffff;
+
+  /* Accent — slate blue, one restrained colour */
+  --color-accent:      #2c5f8a;
+  --color-accent-hover:#244e73;
+  --color-accent-light:#e8f0f7;
+  --color-accent-text: #ffffff;
+
+  /* Borders */
+  --color-border:      #d5d0cb;
+  --color-border-strong:#b0a9a2;
+
+  /* Status colours — muted, not neon */
+  --color-success:     #2e6b4f;
+  --color-success-bg:  #eaf3ee;
+  --color-warning:     #7a5c1e;
+  --color-warning-bg:  #fdf5e4;
+  --color-danger:      #8b2e2e;
+  --color-danger-bg:   #f9ecec;
+  --color-info:        #2c5f8a;
+  --color-info-bg:     #e8f0f7;
+
+  /* Application status pills */
+  --status-applied-bg:       #eaf0f7;
+  --status-applied-text:     #1f4e79;
+  --status-review-bg:        #fdf5e4;
+  --status-review-text:      #7a5c1e;
+  --status-shortlisted-bg:   #e9f4ed;
+  --status-shortlisted-text: #1d5c38;
+  --status-rejected-bg:      #f9ecec;
+  --status-rejected-text:    #8b2e2e;
+  --status-selected-bg:      #e4f3eb;
+  --status-selected-text:    #145c32;
+
+  /* Job status */
+  --status-open-bg:    #e4f3eb;
+  --status-open-text:  #145c32;
+  --status-closed-bg:  #f0eeeb;
+  --status-closed-text:#6b6460;
+
+  /* ── Spacing scale ──────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ── Border radius ──────────────────────────────────── */
+  --radius-sm:   3px;
+  --radius-md:   5px;
+  --radius-lg:   8px;
+
+  /* ── Typography scale ───────────────────────────────── */
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px */
+  --text-3xl:  1.875rem;  /* 30px */
+  --text-4xl:  2.25rem;   /* 36px */
+
+  /* ── Layout ─────────────────────────────────────────── */
+  --max-width:    1200px;
+  --nav-height:    60px;
+  --sidebar-width: 220px;
+}

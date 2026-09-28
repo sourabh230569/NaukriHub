@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In — JobPortal</title>
+  <meta name="description" content="Log in to your JobPortal account to browse and apply for jobs." />
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/auth.css" />
+  <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body class="auth-page">
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/index.html" class="navbar__brand">Job<span>Portal</span></a>
+      <div class="navbar__links">
+        <a href="/register.html">Register</a>
+        <a href="/user/jobs.html">Browse Jobs</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="auth-main" id="main-content">
+    <div class="auth-card" role="main">
+      <h1 class="auth-card__heading">Welcome back</h1>
+      <p class="auth-card__sub">Log in to access your dashboard and applications.</p>
+
+      <div id="loginAlert" class="alert alert--hidden" role="alert" aria-live="polite"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email">Email address <span class="required" aria-hidden="true">*</span></label>
+          <input
+            class="form-input"
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+            aria-describedby="email-error"
+          />
+          <span class="form-error" id="email-error" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password <span class="required" aria-hidden="true">*</span></label>
+          <input
+            class="form-input"
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="Your password"
+            required
+            aria-describedby="password-error"
+          />
+          <span class="form-error" id="password-error" role="alert"></span>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full" id="loginBtn">
+          Log In
+        </button>
+      </form>
+
+      <hr class="auth-divider" />
+
+      <p class="auth-card__footer">
+        Don't have an account? <a href="/register.html">Register here</a>
+      </p>
+
+      <p class="auth-card__footer" style="margin-top: 8px; font-size: 0.75rem; color: var(--color-text-light);">
+        Demo: admin@example.com / Admin@123 &nbsp;|&nbsp; aarav@example.com / User@1234
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__copy">JobPortal &copy; 2026</span>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/validation.js"></script>
+  <script>
+    window.auth.redirectIfLoggedIn();
+
+    const form      = document.getElementById('loginForm');
+    const loginBtn  = document.getElementById('loginBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      window.ui.hideAlert('loginAlert');
+      window.validate.clearFieldErrors();
+
+      const email    = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      // Client-side validation
+      const { valid, errors } = window.validate.validateLoginForm({ email, password });
+      if (!valid) {
+        window.validate.showFieldErrors(errors);
+        return;
+      }
+
+      window.ui.setButtonLoading(loginBtn, true, 'Logging in...');
+
+      try {
+        await window.auth.handleLogin(email, password);
+        // Redirect is handled inside handleLogin on success
+      } catch (err) {
+        const msg = err?.data?.message || err?.message || 'Login failed. Please try again.';
+        window.ui.showAlert('loginAlert', msg, 'error');
+      } finally {
+        window.ui.setButtonLoading(loginBtn, false);
+      }
+    });
+  </script>
+</body>
+</html>

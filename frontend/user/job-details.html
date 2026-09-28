@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Details — JobPortal</title>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/jobs.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/user/dashboard.html" class="navbar__brand">Job<span>Portal</span></a>
+      <div class="navbar__links" id="desktopNav">
+        <a href="/user/dashboard.html">Dashboard</a>
+        <a href="/user/jobs.html">Find Jobs</a>
+        <a href="/user/applications.html">My Applications</a>
+        <a href="#" data-logout>Log Out</a>
+      </div>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle sidebar" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar" aria-label="User navigation">
+      <nav class="sidebar__nav">
+        <div class="sidebar__section-label">Overview</div>
+        <a href="/user/dashboard.html" class="sidebar__link">Dashboard</a>
+        <div class="sidebar__section-label">Jobs</div>
+        <a href="/user/jobs.html" class="sidebar__link active">Find Jobs</a>
+        <div class="sidebar__section-label">Applications</div>
+        <a href="/user/applications.html" class="sidebar__link">My Applications</a>
+      </nav>
+      <div class="sidebar__footer">
+        <div class="sidebar__user-info">
+          <strong id="sidebarName">Loading...</strong>
+          <span id="sidebarRole">User</span>
+        </div>
+        <a href="#" class="sidebar__link" data-logout>Log Out</a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="app-content" id="main-content">
+      <div class="app-content__inner">
+
+        <div style="margin-bottom:var(--space-6);">
+          <a href="/user/jobs.html" class="btn btn--ghost btn--sm" style="padding-left:0;">&larr; Back to Jobs</a>
+        </div>
+
+        <div id="pageAlert" class="alert alert--hidden" role="alert" aria-live="polite"></div>
+
+        <!-- Injected by JS -->
+        <div id="jobDetailContent">
+          <div class="job-detail__layout">
+            <div class="job-detail__main" style="animation:skeleton-pulse 1.4s ease-in-out infinite;">
+              <div style="height:28px;width:55%;background:var(--color-bg-muted);border-radius:3px;margin-bottom:12px;"></div>
+              <div style="height:18px;width:30%;background:var(--color-bg-muted);border-radius:3px;margin-bottom:24px;"></div>
+              <div style="height:14px;width:90%;background:var(--color-bg-muted);border-radius:3px;margin-bottom:10px;"></div>
+              <div style="height:14px;width:80%;background:var(--color-bg-muted);border-radius:3px;margin-bottom:10px;"></div>
+              <div style="height:14px;width:70%;background:var(--color-bg-muted);border-radius:3px;"></div>
+            </div>
+            <div class="job-detail__sidebar">
+              <div class="job-apply-box" style="animation:skeleton-pulse 1.4s ease-in-out infinite;">
+                <div style="height:38px;background:var(--color-bg-muted);border-radius:5px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__copy">JobPortal &copy; 2026. Academic project.</span>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/jobs.js"></script>
+  <script>
+    window.jobsPage.initDetail();
+  </script>
+</body>
+</html>

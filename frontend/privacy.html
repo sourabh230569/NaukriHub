@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — JobPortal</title>
+  <meta name="description" content="Privacy Policy for the JobPortal academic project." />
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+  <style>
+    .legal-page { max-width: 720px; margin: 0 auto; padding: var(--space-10) var(--space-6); }
+    .legal-page h1 { margin-bottom: var(--space-2); }
+    .legal-page .last-updated { color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-8); }
+    .legal-page h2 { font-size: var(--text-lg); font-weight: 600; margin-top: var(--space-8); margin-bottom: var(--space-3); }
+    .legal-page p  { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.8; margin-bottom: var(--space-4); }
+    .legal-page ul { list-style: disc; padding-left: var(--space-6); margin-bottom: var(--space-4); }
+    .legal-page ul li { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-2); line-height: 1.7; }
+    .notice-box {
+      background-color: var(--color-info-bg);
+      border: 1px solid #b3cfe0;
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      margin-bottom: var(--space-8);
+    }
+    .notice-box p { color: var(--color-info); margin-bottom: 0; }
+  </style>
+</head>
+<body class="page-wrapper">
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/index.html" class="navbar__brand">Job<span>Portal</span></a>
+      <div class="navbar__links">
+        <a href="/user/jobs.html">Browse Jobs</a>
+        <a href="/login.html">Log In</a>
+        <a href="/register.html" class="btn-nav">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="legal-page">
+      <h1>Privacy Policy</h1>
+      <p class="last-updated">Last updated: September 2026</p>
+
+      <div class="notice-box">
+        <p><strong>Academic project notice:</strong> JobPortal is a web development academic project. This policy describes how demo data is handled within the project. No personal data is collected for commercial purposes or shared with any third party.</p>
+      </div>
+
+      <h2>1. Information We Collect</h2>
+      <p>When you use JobPortal, we collect only the information required to provide the demonstration features of this application:</p>
+      <ul>
+        <li><strong>Name:</strong> The full name you provide during registration, used to personalise your dashboard.</li>
+        <li><strong>Email address:</strong> Used as a unique identifier for your account and to facilitate login.</li>
+        <li><strong>Password:</strong> Stored as a secure bcrypt hash. Your plain-text password is never stored.</li>
+        <li><strong>Application activity:</strong> Records of which job listings you have applied to and their status.</li>
+      </ul>
+
+      <h2>2. How We Use Your Information</h2>
+      <p>Information collected in this application is used solely for the following demonstration purposes:</p>
+      <ul>
+        <li>Authenticating your login session.</li>
+        <li>Displaying your name and email in your account dashboard.</li>
+        <li>Associating your job applications with your account.</li>
+        <li>Allowing administrators to view applicant information for the purpose of the demonstration workflow.</li>
+      </ul>
+
+      <h2>3. Data Storage</h2>
+      <p>All data is stored in a local SQLite database file on the server running this application. No data is transmitted to external services, cloud databases, or third-party APIs.</p>
+      <p>Because this is an academic project, the database may be reset, modified, or deleted without notice during development or evaluation cycles. You should not use real personal information when creating accounts.</p>
+
+      <h2>4. Cookies and Local Storage</h2>
+      <p>This application uses the following browser storage mechanisms:</p>
+      <ul>
+        <li><strong>HTTP-only cookie:</strong> A session token may be set as an HTTP-only cookie to maintain your logged-in state securely.</li>
+        <li><strong>localStorage:</strong> Your authentication token and basic user profile (name, email, role) are stored in browser localStorage to allow client-side session management.</li>
+      </ul>
+      <p>No tracking cookies, analytics cookies, or advertising cookies are used.</p>
+
+      <h2>5. Data Sharing</h2>
+      <p>No data collected through this application is shared with any third party, sold, or used for advertising. This application does not integrate with any external analytics, advertising, or data broker services.</p>
+
+      <h2>6. Security</h2>
+      <p>Reasonable security measures have been implemented for this academic project, including:</p>
+      <ul>
+        <li>Passwords are hashed using bcrypt before storage.</li>
+        <li>SQL queries use parameterised statements to prevent injection attacks.</li>
+        <li>JWT authentication tokens are used for session management.</li>
+        <li>Role-based access control prevents users from accessing admin-only data.</li>
+      </ul>
+      <p>However, this application has not undergone a professional security audit. It is not suitable for handling sensitive real-world data and should be used only in a development or demonstration context.</p>
+
+      <h2>7. Your Rights</h2>
+      <p>Because this is an academic demonstration project, it does not fall under commercial data protection regulations. However, in the spirit of good practice:</p>
+      <ul>
+        <li>You may delete your account by contacting the project administrator.</li>
+        <li>You should avoid entering real or sensitive personal information into this application.</li>
+      </ul>
+
+      <h2>8. Changes to This Policy</h2>
+      <p>This policy may be updated during the course of the academic project. The date at the top of this page reflects when it was last revised.</p>
+
+      <p style="margin-top: var(--space-8);"><a href="/index.html" class="link">Return to home</a> &nbsp;|&nbsp; <a href="/terms.html" class="link">Terms of Use</a></p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__copy">JobPortal &copy; 2026. Academic project.</span>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

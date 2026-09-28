@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Job — JobPortal Admin</title>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/admin/dashboard.html" class="navbar__brand">Job<span>Portal</span> <small style="font-size:0.65rem;font-weight:400;color:var(--color-text-muted);margin-left:6px;">Admin</small></a>
+      <div class="navbar__links">
+        <a href="/admin/dashboard.html">Dashboard</a>
+        <a href="/admin/create-job.html" class="active">Create Job</a>
+        <a href="#" data-logout>Log Out</a>
+      </div>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle sidebar" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar" aria-label="Admin navigation">
+      <nav class="sidebar__nav">
+        <div class="sidebar__section-label">Overview</div>
+        <a href="/admin/dashboard.html" class="sidebar__link">Dashboard</a>
+        <div class="sidebar__section-label">Jobs</div>
+        <a href="/admin/create-job.html" class="sidebar__link active" aria-current="page">Create Job</a>
+        <div class="sidebar__section-label">Applications</div>
+        <a href="/admin/applicants.html" class="sidebar__link">All Applicants</a>
+      </nav>
+      <div class="sidebar__footer">
+        <div class="sidebar__user-info">
+          <strong id="sidebarName">Loading...</strong>
+          <span id="sidebarRole">Admin</span>
+        </div>
+        <a href="#" class="sidebar__link" data-logout>Log Out</a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="app-content" id="main-content">
+      <div class="app-content__inner">
+
+        <div class="dash-header">
+          <h1>Create Job</h1>
+          <p>Add a new job opening to the portal.</p>
+        </div>
+
+        <div class="form-card">
+          <div id="createJobAlert" class="alert alert--hidden" role="alert" aria-live="polite"></div>
+
+          <form id="createJobForm" novalidate>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="title">Job Title <span class="required" aria-hidden="true">*</span></label>
+                <input class="form-input" type="text" id="title" name="title" placeholder="e.g. Frontend Developer Intern" required aria-describedby="title-error" />
+                <span class="form-error" id="title-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="company">Company <span class="required" aria-hidden="true">*</span></label>
+                <input class="form-input" type="text" id="company" name="company" placeholder="e.g. TechNova Solutions" required aria-describedby="company-error" />
+                <span class="form-error" id="company-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="location">Location <span class="required" aria-hidden="true">*</span></label>
+                <input class="form-input" type="text" id="location" name="location" placeholder="e.g. Bhopal, MP" required aria-describedby="location-error" />
+                <span class="form-error" id="location-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="employment_type">Employment Type <span class="required" aria-hidden="true">*</span></label>
+                <select class="form-select" id="employment_type" name="employment_type" required aria-describedby="employment_type-error">
+                  <option value="">Select type</option>
+                  <option value="Full-time">Full-time</option>
+                  <option value="Part-time">Part-time</option>
+                  <option value="Internship">Internship</option>
+                  <option value="Contract">Contract</option>
+                  <option value="Remote">Remote</option>
+                </select>
+                <span class="form-error" id="employment_type-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="salary">Salary / Stipend</label>
+                <input class="form-input" type="text" id="salary" name="salary" placeholder="e.g. 6,00,000 - 9,00,000/year" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="experience">Experience Required</label>
+                <input class="form-input" type="text" id="experience" name="experience" placeholder="e.g. 2 - 4 years" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="application_deadline">Application Deadline <span class="required" aria-hidden="true">*</span></label>
+                <input class="form-input" type="date" id="application_deadline" name="application_deadline" required aria-describedby="application_deadline-error" />
+                <span class="form-error" id="application_deadline-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="status">Status</label>
+                <select class="form-select" id="status" name="status">
+                  <option value="Open">Open</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label class="form-label" for="description">Job Description <span class="required" aria-hidden="true">*</span></label>
+                <textarea class="form-textarea" id="description" name="description" rows="6" placeholder="Describe the role, responsibilities, and team..." required aria-describedby="description-error"></textarea>
+                <span class="form-error" id="description-error" role="alert"></span>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label class="form-label" for="requirements">Requirements <span class="required" aria-hidden="true">*</span></label>
+                <textarea class="form-textarea" id="requirements" name="requirements" rows="5" placeholder="List required skills, qualifications, and experience..." required aria-describedby="requirements-error"></textarea>
+                <span class="form-error" id="requirements-error" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary" id="createJobBtn">Create Job</button>
+              <a href="/admin/dashboard.html" class="btn btn--secondary">Cancel</a>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__copy">JobPortal &copy; 2026. Academic project.</span>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/validation.js"></script>
+  <script src="/js/admin.js"></script>
+  <script>
+    if (!window.auth.requireAdmin()) { /* redirected */ }
+    else { window.adminPages.initCreateJob(); }
+  </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Jobs — JobPortal</title>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/jobs.css" />
+  <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/user/dashboard.html" class="navbar__brand">Job<span>Portal</span></a>
+      <div class="navbar__links" id="desktopNav">
+        <a href="/user/dashboard.html">Dashboard</a>
+        <a href="/user/jobs.html" class="active">Find Jobs</a>
+        <a href="/user/applications.html">My Applications</a>
+        <a href="#" data-logout>Log Out</a>
+      </div>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle sidebar" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar" aria-label="User navigation">
+      <nav class="sidebar__nav">
+        <div class="sidebar__section-label">Overview</div>
+        <a href="/user/dashboard.html" class="sidebar__link">Dashboard</a>
+        <div class="sidebar__section-label">Jobs</div>
+        <a href="/user/jobs.html" class="sidebar__link active" aria-current="page">Find Jobs</a>
+        <div class="sidebar__section-label">Applications</div>
+        <a href="/user/applications.html" class="sidebar__link">My Applications</a>
+      </nav>
+      <div class="sidebar__footer">
+        <div class="sidebar__user-info">
+          <strong id="sidebarName">Loading...</strong>
+          <span id="sidebarRole">User</span>
+        </div>
+        <a href="#" class="sidebar__link" data-logout>Log Out</a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="app-content" id="main-content">
+      <div class="app-content__inner">
+
+        <div class="dash-header">
+          <h1>Find Jobs</h1>
+          <p>Browse and search open positions.</p>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="filter-bar" role="search" aria-label="Job search and filters">
+          <form id="filterForm">
+            <div class="filter-bar__row">
+              <div class="filter-bar__field">
+                <label for="search">Search</label>
+                <input type="text" id="search" name="search" placeholder="Job title or company..." autocomplete="off" />
+              </div>
+              <div class="filter-bar__field">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="City or state..." autocomplete="off" />
+              </div>
+              <div class="filter-bar__field">
+                <label for="type">Employment Type</label>
+                <select id="type" name="type">
+                  <option value="">All types</option>
+                  <option value="Full-time">Full-time</option>
+                  <option value="Part-time">Part-time</option>
+                  <option value="Internship">Internship</option>
+                  <option value="Contract">Contract</option>
+                  <option value="Remote">Remote</option>
+                </select>
+              </div>
+              <div class="filter-bar__field">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                  <option value="">All statuses</option>
+                  <option value="Open" selected>Open</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </div>
+              <div class="filter-bar__field">
+                <label for="sort">Sort by</label>
+                <select id="sort" name="sort">
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                  <option value="deadline">Deadline</option>
+                  <option value="title">Title A-Z</option>
+                </select>
+              </div>
+              <div class="filter-bar__actions">
+                <button type="submit" class="btn btn--primary">Search</button>
+                <button type="button" class="btn btn--secondary" id="clearFilters">Clear</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div id="jobsAlert" class="alert alert--hidden" role="alert" aria-live="polite"></div>
+        <p class="results-meta" id="resultsMeta"></p>
+
+        <!-- Job list -->
+        <div id="jobsList">
+          <!-- Skeleton injected by JS -->
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__copy">JobPortal &copy; 2026. Academic project.</span>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/jobs.js"></script>
+  <script>
+    // jobs.html is accessible to unauthenticated users too (public job browsing)
+    window.jobsPage.init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobPortal — Find Your Next Role</title>
+  <meta name="description" content="Browse open positions across top companies. Apply directly and track your applications in one place." />
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+  <style>
+    /* Landing page specific styles */
+    .hero {
+      background-color: var(--color-bg-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-16) 0 var(--space-12);
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: var(--space-4);
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      max-width: 540px;
+      margin: 0 auto var(--space-8);
+    }
+    .hero__actions {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .info-section {
+      padding: var(--space-12) 0;
+    }
+    .info-section h2 {
+      font-size: var(--text-xl);
+      font-weight: 600;
+      margin-bottom: var(--space-8);
+      text-align: center;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-6);
+    }
+    .info-item {
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+    }
+    .info-item__title {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+    }
+    .info-item__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+    .cta-section {
+      background-color: var(--color-accent);
+      padding: var(--space-12) 0;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: var(--space-4);
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.85);
+      font-size: var(--text-base);
+      margin-bottom: var(--space-6);
+    }
+    .btn--white {
+      background-color: #fff;
+      color: var(--color-accent);
+      border-color: #fff;
+      font-weight: 600;
+    }
+    @media (max-width: 480px) {
+      .hero { padding: var(--space-10) 0 var(--space-8); }
+      .hero__actions { flex-direction: column; align-items: center; }
+      .hero__actions .btn { width: 200px; justify-content: center; }
+    }
+  </style>
+</head>
+<body class="page-wrapper">
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/index.html" class="navbar__brand">Job<span>Portal</span></a>
+      <div class="navbar__links" id="desktopNav">
+        <a href="/user/jobs.html">Browse Jobs</a>
+        <a href="/login.html">Log In</a>
+        <a href="/register.html" class="btn-nav">Register</a>
+      </div>
+      <button class="navbar__hamburger" id="navHamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="navbar__mobile-menu" id="mobileMenu" role="menu">
+      <a href="/user/jobs.html">Browse Jobs</a>
+      <a href="/login.html">Log In</a>
+      <a href="/register.html">Register</a>
+    </div>
+  </nav>
+
+  <main class="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Find work that fits your career.</h1>
+        <p>Browse open positions across engineering, design, data, and more. Apply in minutes and track your applications in one place.</p>
+        <div class="hero__actions">
+          <a href="/register.html" class="btn btn--primary btn--lg">Create an account</a>
+          <a href="/user/jobs.html" class="btn btn--secondary btn--lg">Browse jobs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info section -->
+    <section class="info-section">
+      <div class="container">
+        <h2>How it works</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-item__title">Create an account</div>
+            <p class="info-item__desc">Register with your name and email. Your account gives you access to the full job listing and a personal dashboard to track every application you submit.</p>
+          </div>
+          <div class="info-item">
+            <div class="info-item__title">Browse and search</div>
+            <p class="info-item__desc">Filter open roles by title, location, employment type, and more. Each listing includes a full job description, requirements, salary, and deadline.</p>
+          </div>
+          <div class="info-item">
+            <div class="info-item__title">Apply and track</div>
+            <p class="info-item__desc">Submit your application with one click. Your dashboard shows every application you have made along with its current status — Applied, Under Review, Shortlisted, and more.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to get started?</h2>
+        <p>Create a free account and start applying today.</p>
+        <a href="/register.html" class="btn btn--white btn--lg">Register now</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__copy">JobPortal &copy; 2026. Academic project — not a real hiring platform.</span>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/login.html">Log In</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/common.js"></script>
+  <script>
+    // Redirect logged-in users away from landing page
+    window.auth.redirectIfLoggedIn();
+    window.ui.initMobileNav();
+  </script>
+</body>
+</html>

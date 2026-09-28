@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — JobPortal</title>
+  <meta name="description" content="Create a JobPortal account to start applying for jobs." />
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/auth.css" />
+  <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body class="auth-page">
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/index.html" class="navbar__brand">Job<span>Portal</span></a>
+      <div class="navbar__links">
+        <a href="/login.html">Log In</a>
+        <a href="/user/jobs.html">Browse Jobs</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="auth-main" id="main-content">
+    <div class="auth-card" role="main">
+      <h1 class="auth-card__heading">Create an account</h1>
+      <p class="auth-card__sub">Join JobPortal to browse and apply for open positions.</p>
+
+      <div id="registerAlert" class="alert alert--hidden" role="alert" aria-live="polite"></div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="name">Full name <span class="required" aria-hidden="true">*</span></label>
+          <input
+            class="form-input"
+            type="text"
+            id="name"
+            name="name"
+            autocomplete="name"
+            placeholder="Your full name"
+            required
+            aria-describedby="name-error"
+          />
+          <span class="form-error" id="name-error" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email address <span class="required" aria-hidden="true">*</span></label>
+          <input
+            class="form-input"
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+            aria-describedby="email-error"
+          />
+          <span class="form-error" id="email-error" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password <span class="required" aria-hidden="true">*</span></label>
+          <input
+            class="form-input"
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="new-password"
+            placeholder="Minimum 8 characters"
+            required
+            aria-describedby="password-error password-hint"
+          />
+          <span class="form-hint" id="password-hint">Use at least 8 characters.</span>
+          <span class="form-error" id="password-error" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">Confirm password <span class="required" aria-hidden="true">*</span></label>
+          <input
+            class="form-input"
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            autocomplete="new-password"
+            placeholder="Repeat your password"
+            required
+            aria-describedby="confirmPassword-error"
+          />
+          <span class="form-error" id="confirmPassword-error" role="alert"></span>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full" id="registerBtn">
+          Create Account
+        </button>
+      </form>
+
+      <hr class="auth-divider" />
+
+      <p class="auth-card__footer">
+        Already have an account? <a href="/login.html">Log in here</a>
+      </p>
+      <p class="auth-card__footer" style="margin-top: 8px; font-size: 0.75rem; color: var(--color-text-light);">
+        By creating an account you agree to our <a href="/terms.html">Terms of Use</a> and <a href="/privacy.html">Privacy Policy</a>.
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__copy">JobPortal &copy; 2026</span>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/validation.js"></script>
+  <script>
+    window.auth.redirectIfLoggedIn();
+
+    const form        = document.getElementById('registerForm');
+    const registerBtn = document.getElementById('registerBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      window.ui.hideAlert('registerAlert');
+      window.validate.clearFieldErrors();
+
+      const formData = {
+        name:            document.getElementById('name').value.trim(),
+        email:           document.getElementById('email').value.trim(),
+        password:        document.getElementById('password').value,
+        confirmPassword: document.getElementById('confirmPassword').value
+      };
+
+      const { valid, errors } = window.validate.validateRegisterForm(formData);
+      if (!valid) {
+        window.validate.showFieldErrors(errors);
+        return;
+      }
+
+      window.ui.setButtonLoading(registerBtn, true, 'Creating account...');
+
+      try {
+        await window.auth.handleRegister(formData);
+        // Redirect handled inside handleRegister
+      } catch (err) {
+        const msg = err?.data?.message || err?.message || 'Registration failed. Please try again.';
+        window.ui.showAlert('registerAlert', msg, 'error');
+      } finally {
+        window.ui.setButtonLoading(registerBtn, false);
+      }
+    });
+  </script>
+</body>
+</html>

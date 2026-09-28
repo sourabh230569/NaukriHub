@@ -1,0 +1,25 @@
+# ── Node ─────────────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Environment (never commit real secrets) ───────────────────────────────────
+backend/.env
+
+# ── Database (runtime file, not committed) ────────────────────────────────────
+backend/database/jobportal.db
+backend/database/jobportal.db-shm
+backend/database/jobportal.db-wal
+
+# ── OS / editor ──────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Build / dist ──────────────────────────────────────────────────────────────
+dist/
+build/
